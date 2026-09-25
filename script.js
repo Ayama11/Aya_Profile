@@ -374,7 +374,7 @@ cadifyStages.forEach((button, index) => {
 });
 
 /* =========================
-   V5 interactive hero network
+   Refined interactive hero network
    ========================= */
 const heroVisual = $('#heroVisual');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -391,8 +391,8 @@ if (heroVisual && !reducedMotion.matches) {
       const rect = heroVisual.getBoundingClientRect();
       const px = (event.clientX - rect.left) / rect.width - 0.5;
       const py = (event.clientY - rect.top) / rect.height - 0.5;
-      heroVisual.style.setProperty('--hero-x', `${(px * 12).toFixed(1)}px`);
-      heroVisual.style.setProperty('--hero-y', `${(py * 10).toFixed(1)}px`);
+      heroVisual.style.setProperty('--hero-x', `${(px * 7).toFixed(1)}px`);
+      heroVisual.style.setProperty('--hero-y', `${(py * 6).toFixed(1)}px`);
     });
     heroVisual.addEventListener('pointerleave', resetHeroParallax);
   }
@@ -401,6 +401,18 @@ if (heroVisual && !reducedMotion.matches) {
     heroVisual.classList.remove('is-pulsing');
     void heroVisual.offsetWidth;
     heroVisual.classList.add('is-pulsing');
-    window.setTimeout(() => heroVisual.classList.remove('is-pulsing'), 950);
+    window.setTimeout(() => heroVisual.classList.remove('is-pulsing'), 820);
   });
 }
+
+/* V7 responsive navigation guard */
+let responsiveResizeTimer;
+window.addEventListener('resize', () => {
+  window.clearTimeout(responsiveResizeTimer);
+  responsiveResizeTimer = window.setTimeout(() => {
+    if (window.innerWidth > 820 && navLinks?.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      menuButton?.setAttribute('aria-expanded', 'false');
+    }
+  }, 120);
+}, { passive: true });
