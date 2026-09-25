@@ -374,7 +374,7 @@ cadifyStages.forEach((button, index) => {
 });
 
 /* =========================
-   Refined interactive hero network
+   Refined interactive AI core
    ========================= */
 const heroVisual = $('#heroVisual');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
