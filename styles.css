@@ -1086,7 +1086,7 @@ button:focus-visible {
   border: 0 !important;
 }
 
-/* Hero AI network: inline SVG, using the exact teal from the name. */
+/* Hero AI core: simple orbital AI mark in the exact teal used by the name. */
 .hero-visual {
   --hero-x: 0px;
   --hero-y: 0px;
@@ -1098,153 +1098,199 @@ button:focus-visible {
   padding: 0;
   margin: 0;
   position: absolute;
-  top: -46px;
-  right: -12px;
-  width: min(100%, 410px);
-  aspect-ratio: 1 / 1.12;
+  top: -30px;
+  right: -6px;
+  width: min(100%, 390px);
+  aspect-ratio: 1;
   pointer-events: auto;
   cursor: pointer;
   z-index: 0;
   overflow: visible;
   transform: translate3d(var(--hero-x), var(--hero-y), 0) scale(var(--hero-scale));
   transform-origin: center;
-  transition: transform .36s var(--ease), opacity .3s ease;
+  transition: transform .35s var(--ease), opacity .3s ease, filter .3s ease;
   outline: none;
 }
 
-.ai-network {
+.ai-core {
   display: block;
   width: 100%;
   height: 100%;
   overflow: visible;
   color: inherit;
-  animation: networkFloat 8s ease-in-out infinite;
-  filter: drop-shadow(0 14px 26px rgba(94,171,185,.08));
+  animation: coreFloat 7s ease-in-out infinite;
+  filter: drop-shadow(0 14px 28px rgba(94,171,185,.09));
 }
 
-.network-halo circle {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.4;
-  opacity: .10;
+.ai-core-orbits,
+.ai-core-nodes {
   transform-origin: 210px 210px;
-  animation: haloBreathe 6s ease-in-out infinite;
+  transform-box: view-box;
 }
 
-.network-halo circle:last-child {
-  opacity: .07;
-  animation-delay: -2.7s;
-}
-
-.network-links path {
+.core-orbit {
   fill: none;
   stroke: currentColor;
   stroke-width: 2.2;
   stroke-linecap: round;
-  opacity: .38;
+  opacity: .56;
 }
 
-.network-links path:nth-child(n+8) {
-  stroke-width: 1.45;
-  opacity: .25;
+
+.ai-core-orbits {
+  animation: orbitRotate 20s linear infinite;
 }
 
-.network-flow path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.6;
-  stroke-linecap: round;
-  stroke-dasharray: 3 19;
-  opacity: .66;
-  animation: networkFlow 6.5s linear infinite;
+.ai-core-nodes {
+  animation: orbitRotate 20s linear infinite;
 }
 
-.network-flow path:nth-child(2n) { animation-delay: -2.1s; }
-.network-flow path:nth-child(3n) { animation-delay: -4.2s; }
-
-.network-nodes .node {
-  fill: var(--cream);
-  stroke: currentColor;
-  stroke-width: 3;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: nodePulse 4.4s ease-in-out infinite;
-  animation-delay: var(--delay, 0s);
-}
-
-.network-nodes .node-core {
-  fill: currentColor;
+.orbit-node {
+  fill: var(--teal);
   stroke: var(--cream);
-  stroke-width: 8;
-  filter: drop-shadow(0 0 10px rgba(94,171,185,.18));
-  animation: corePulse 4.8s ease-in-out infinite;
+  stroke-width: 5;
+  filter: drop-shadow(0 2px 6px rgba(94,171,185,.16));
 }
 
-.network-nodes .node-small {
-  fill: currentColor;
-  stroke-width: 0;
-  opacity: .72;
+.node-a { animation: nodePulseA 4.8s ease-in-out infinite; }
+.node-b { animation: nodePulseB 4.8s .7s ease-in-out infinite; }
+.node-c { animation: nodePulseC 4.8s 1.4s ease-in-out infinite; }
+
+.ai-core-center {
+  transform-origin: 210px 210px;
+  animation: centerBreathe 4.6s ease-in-out infinite;
 }
 
-.network-particles circle {
+.core-ring {
+  fill: rgba(245,241,234,.94);
+  stroke: currentColor;
+  stroke-width: 2;
+  opacity: .96;
+}
+
+.core-dot {
   fill: currentColor;
-  opacity: .9;
-  filter: drop-shadow(0 0 5px rgba(94,171,185,.3));
+  opacity: .94;
 }
 
 .hero-visual:hover,
 .hero-visual:focus-visible {
   --hero-scale: 1.025;
+  filter: saturate(1.05);
 }
 
-.hero-visual:hover .network-links path,
-.hero-visual:focus-visible .network-links path {
-  opacity: .46;
+.hero-visual:hover .core-orbit,
+.hero-visual:focus-visible .core-orbit {
+  opacity: .72;
 }
 
 .hero-visual:focus-visible {
-  outline: 2px solid rgba(94,171,185,.38);
-  outline-offset: 7px;
+  outline: 2px solid rgba(94,171,185,.34);
+  outline-offset: 8px;
   border-radius: 50%;
 }
 
 .hero-visual.is-pulsing::after {
   content: "";
   position: absolute;
-  inset: 16% 11% 17%;
+  inset: 20%;
   border: 1px solid rgba(94,171,185,.34);
   border-radius: 50%;
-  animation: networkClickPulse .8s ease-out 1;
+  animation: coreClickPulse .8s ease-out 1;
   pointer-events: none;
 }
 
-@keyframes networkFloat {
+@keyframes coreFloat {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -7px, 0); }
+  50% { transform: translate3d(0, -6px, 0); }
 }
 
-@keyframes haloBreathe {
-  0%, 100% { transform: scale(.98); opacity: .08; }
-  50% { transform: scale(1.035); opacity: .14; }
+@keyframes orbitRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-@keyframes networkFlow {
-  to { stroke-dashoffset: -66; }
-}
-
-@keyframes nodePulse {
-  0%, 72%, 100% { transform: scale(1); opacity: .82; }
-  82% { transform: scale(1.16); opacity: 1; }
-}
-
-@keyframes corePulse {
+@keyframes centerBreathe {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.07); }
+  50% { transform: scale(1.055); }
 }
 
-@keyframes networkClickPulse {
-  0% { opacity: .55; transform: scale(.86); }
-  100% { opacity: 0; transform: scale(1.12); }
+@keyframes nodePulseA {
+  0%, 72%, 100% { opacity: .88; }
+  82% { opacity: 1; }
+}
+
+@keyframes nodePulseB {
+  0%, 72%, 100% { opacity: .86; }
+  82% { opacity: 1; }
+}
+
+@keyframes nodePulseC {
+  0%, 72%, 100% { opacity: .84; }
+  82% { opacity: 1; }
+}
+
+@keyframes coreClickPulse {
+  0% { opacity: .5; transform: scale(.88); }
+  100% { opacity: 0; transform: scale(1.14); }
+}
+
+/* Tablet sizing for the AI core. */
+@media (max-width: 980px) {
+  .hero-visual {
+    width: 315px;
+    top: -12px;
+    right: -2px;
+  }
+}
+
+/* Small tablets / large phones. */
+@media (max-width: 760px) {
+  .hero-side {
+    grid-template-columns: minmax(132px, .54fr) minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .hero-visual {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: min(100%, 205px);
+    aspect-ratio: 1;
+    justify-self: center;
+    align-self: center;
+  }
+}
+
+/* Phones: core sits above the focus card. */
+@media (max-width: 560px) {
+  .hero-side {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .hero-visual {
+    width: min(58vw, 210px);
+    margin: 0 auto -12px;
+    opacity: .98;
+  }
+
+  .hero-visual:hover,
+  .hero-visual:focus-visible {
+    --hero-scale: 1.015;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual,
+  .ai-core,
+  .ai-core-orbits,
+  .ai-core-nodes,
+  .ai-core-center,
+  .hero-visual.is-pulsing::after {
+    animation: none !important;
+  }
+  .hero-visual { transform: none !important; }
 }
 
 /* Keep the current-focus card fully readable above the moving artwork. */
