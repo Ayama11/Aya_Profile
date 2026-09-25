@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="Aya Almalla — Artificial Intelligence Engineer building practical AI systems across computer vision, NLP, RAG, deployment, and product-focused engineering." />
   <meta name="theme-color" content="#F5F1EA" />
   <meta property="og:title" content="Aya Almalla — Artificial Intelligence Engineer" />
@@ -59,10 +59,71 @@
         </div>
 
         <div class="hero-side reveal-up delay-1">
-          <button class="hero-visual" id="heroVisual" type="button" aria-label="Interactive AI network illustration" title="Move your cursor over the AI network">
-            <span class="hero-visual-orbit" aria-hidden="true">
-              <img src="assets/hero-ai-network.png" alt="" draggable="false" />
-            </span>
+          <button class="hero-visual" id="heroVisual" type="button" aria-label="Interactive AI network illustration" title="Interactive AI network">
+            <svg class="ai-network" viewBox="0 0 420 470" aria-hidden="true" focusable="false">
+              <g class="network-halo">
+                <circle cx="210" cy="210" r="126" />
+                <circle cx="210" cy="210" r="92" />
+              </g>
+
+              <g class="network-links">
+                <path d="M210 210 L210 78" />
+                <path d="M210 210 L326 132" />
+                <path d="M210 210 L340 254" />
+                <path d="M210 210 L282 352" />
+                <path d="M210 210 L142 350" />
+                <path d="M210 210 L76 250" />
+                <path d="M210 210 L102 126" />
+
+                <path d="M210 78 Q272 82 326 132" />
+                <path d="M326 132 Q354 188 340 254" />
+                <path d="M340 254 Q330 316 282 352" />
+                <path d="M282 352 Q210 378 142 350" />
+                <path d="M142 350 Q88 316 76 250" />
+                <path d="M76 250 Q64 180 102 126" />
+                <path d="M102 126 Q150 82 210 78" />
+
+                <path d="M102 126 Q176 144 210 210" />
+                <path d="M326 132 Q250 146 210 210" />
+                <path d="M76 250 Q150 260 210 210" />
+                <path d="M340 254 Q270 264 210 210" />
+              </g>
+
+              <g class="network-flow">
+                <path d="M102 126 Q150 82 210 78" />
+                <path d="M210 78 Q272 82 326 132" />
+                <path d="M326 132 Q354 188 340 254" />
+                <path d="M340 254 Q330 316 282 352" />
+                <path d="M282 352 Q210 378 142 350" />
+                <path d="M142 350 Q88 316 76 250" />
+                <path d="M76 250 Q64 180 102 126" />
+              </g>
+
+              <g class="network-nodes">
+                <circle class="node node-core" cx="210" cy="210" r="22" />
+                <circle class="node" style="--delay:0s" cx="210" cy="78" r="10" />
+                <circle class="node" style="--delay:.55s" cx="326" cy="132" r="12" />
+                <circle class="node" style="--delay:1.1s" cx="340" cy="254" r="9" />
+                <circle class="node" style="--delay:1.65s" cx="282" cy="352" r="12" />
+                <circle class="node" style="--delay:2.2s" cx="142" cy="350" r="9" />
+                <circle class="node" style="--delay:2.75s" cx="76" cy="250" r="12" />
+                <circle class="node" style="--delay:3.3s" cx="102" cy="126" r="9" />
+
+                <circle class="node node-small" style="--delay:.8s" cx="158" cy="154" r="5" />
+                <circle class="node node-small" style="--delay:1.8s" cx="267" cy="165" r="5" />
+                <circle class="node node-small" style="--delay:2.8s" cx="271" cy="270" r="5" />
+                <circle class="node node-small" style="--delay:3.8s" cx="151" cy="270" r="5" />
+              </g>
+
+              <g class="network-particles">
+                <circle r="4">
+                  <animateMotion dur="5.8s" repeatCount="indefinite" path="M102 126 Q150 82 210 78 Q272 82 326 132" />
+                </circle>
+                <circle r="3.5">
+                  <animateMotion dur="6.6s" begin="-2.2s" repeatCount="indefinite" path="M340 254 Q330 316 282 352 Q210 378 142 350" />
+                </circle>
+              </g>
+            </svg>
             <span class="sr-only">Interactive decorative AI network</span>
           </button>
           <div class="hero-card" aria-label="Current focus">
@@ -160,7 +221,7 @@
               <div><strong>3h → 1–2m</strong><span>workflow time</span></div>
             </div>
             <div class="project-actions">
-              
+              <a class="button button-primary" href="https://cadifym.up.railway.app/" target="_blank" rel="noreferrer">Open live demo ↗</a>
               <button class="button button-ghost" data-case="cadify">Technical case study</button>
             </div>
           </div>
