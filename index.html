@@ -59,72 +59,26 @@
         </div>
 
         <div class="hero-side reveal-up delay-1">
-          <button class="hero-visual" id="heroVisual" type="button" aria-label="Interactive AI network illustration" title="Interactive AI network">
-            <svg class="ai-network" viewBox="0 0 420 470" aria-hidden="true" focusable="false">
-              <g class="network-halo">
-                <circle cx="210" cy="210" r="126" />
-                <circle cx="210" cy="210" r="92" />
+          <button class="hero-visual" id="heroVisual" type="button" aria-label="Interactive AI core illustration" title="Interactive AI core">
+            <svg class="ai-core" viewBox="0 0 420 420" aria-hidden="true" focusable="false">
+              <g class="ai-core-orbits">
+                <ellipse class="core-orbit" cx="210" cy="210" rx="128" ry="58" />
+                <ellipse class="core-orbit" cx="210" cy="210" rx="128" ry="58" transform="rotate(60 210 210)" />
+                <ellipse class="core-orbit" cx="210" cy="210" rx="128" ry="58" transform="rotate(120 210 210)" />
               </g>
 
-              <g class="network-links">
-                <path d="M210 210 L210 78" />
-                <path d="M210 210 L326 132" />
-                <path d="M210 210 L340 254" />
-                <path d="M210 210 L282 352" />
-                <path d="M210 210 L142 350" />
-                <path d="M210 210 L76 250" />
-                <path d="M210 210 L102 126" />
-
-                <path d="M210 78 Q272 82 326 132" />
-                <path d="M326 132 Q354 188 340 254" />
-                <path d="M340 254 Q330 316 282 352" />
-                <path d="M282 352 Q210 378 142 350" />
-                <path d="M142 350 Q88 316 76 250" />
-                <path d="M76 250 Q64 180 102 126" />
-                <path d="M102 126 Q150 82 210 78" />
-
-                <path d="M102 126 Q176 144 210 210" />
-                <path d="M326 132 Q250 146 210 210" />
-                <path d="M76 250 Q150 260 210 210" />
-                <path d="M340 254 Q270 264 210 210" />
+              <g class="ai-core-nodes">
+                <circle class="orbit-node node-a" cx="338" cy="210" r="10" />
+                <g transform="rotate(60 210 210)"><circle class="orbit-node node-b" cx="338" cy="210" r="10" /></g>
+                <g transform="rotate(120 210 210)"><circle class="orbit-node node-c" cx="338" cy="210" r="10" /></g>
               </g>
 
-              <g class="network-flow">
-                <path d="M102 126 Q150 82 210 78" />
-                <path d="M210 78 Q272 82 326 132" />
-                <path d="M326 132 Q354 188 340 254" />
-                <path d="M340 254 Q330 316 282 352" />
-                <path d="M282 352 Q210 378 142 350" />
-                <path d="M142 350 Q88 316 76 250" />
-                <path d="M76 250 Q64 180 102 126" />
-              </g>
-
-              <g class="network-nodes">
-                <circle class="node node-core" cx="210" cy="210" r="22" />
-                <circle class="node" style="--delay:0s" cx="210" cy="78" r="10" />
-                <circle class="node" style="--delay:.55s" cx="326" cy="132" r="12" />
-                <circle class="node" style="--delay:1.1s" cx="340" cy="254" r="9" />
-                <circle class="node" style="--delay:1.65s" cx="282" cy="352" r="12" />
-                <circle class="node" style="--delay:2.2s" cx="142" cy="350" r="9" />
-                <circle class="node" style="--delay:2.75s" cx="76" cy="250" r="12" />
-                <circle class="node" style="--delay:3.3s" cx="102" cy="126" r="9" />
-
-                <circle class="node node-small" style="--delay:.8s" cx="158" cy="154" r="5" />
-                <circle class="node node-small" style="--delay:1.8s" cx="267" cy="165" r="5" />
-                <circle class="node node-small" style="--delay:2.8s" cx="271" cy="270" r="5" />
-                <circle class="node node-small" style="--delay:3.8s" cx="151" cy="270" r="5" />
-              </g>
-
-              <g class="network-particles">
-                <circle r="4">
-                  <animateMotion dur="5.8s" repeatCount="indefinite" path="M102 126 Q150 82 210 78 Q272 82 326 132" />
-                </circle>
-                <circle r="3.5">
-                  <animateMotion dur="6.6s" begin="-2.2s" repeatCount="indefinite" path="M340 254 Q330 316 282 352 Q210 378 142 350" />
-                </circle>
+              <g class="ai-core-center">
+                <circle class="core-ring" cx="210" cy="210" r="43" />
+                <circle class="core-dot" cx="210" cy="210" r="28" />
               </g>
             </svg>
-            <span class="sr-only">Interactive decorative AI network</span>
+            <span class="sr-only">Interactive decorative AI core</span>
           </button>
           <div class="hero-card" aria-label="Current focus">
             <div class="hero-card-label">Current focus</div>
