@@ -1,1 +1,6 @@
-{}
+{
+  "title": "Aya Almalla — Artificial Intelligence Engineer",
+  "description": "Aya Almalla — Artificial Intelligence Engineer building practical AI systems across computer vision, NLP, RAG, deployment, and product-focused engineering.",
+  "language": "en",
+  "icons": { "icon": "./assets/favicon.svg" }
+}
