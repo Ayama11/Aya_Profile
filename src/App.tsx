@@ -44,6 +44,7 @@ export default function App() {
   const [activeProject, setActiveProject] = useState<Project | null>(null)
   const [galleryProject, setGalleryProject] = useState<Project | null>(null)
   const [scrolled, setScrolled] = useState(false)
+  const [activeId, setActiveId] = useState("")
   const dialogRef = useRef<HTMLDialogElement>(null)
   const menuRef = useRef<HTMLButtonElement>(null)
   const dialogOpen = Boolean(activeProject || galleryProject)
@@ -81,23 +82,53 @@ export default function App() {
   }, [dialogOpen])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    onScroll()
+    let ticking = false
+    const update = () => {
+      ticking = false
+      setScrolled(window.scrollY > 20)
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0
+      document.documentElement.style.setProperty("--progress", String(progress))
+    }
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(update)
+    }
+    update()
     window.addEventListener("scroll", onScroll, { passive: true })
-    const observer = new IntersectionObserver(
+    window.addEventListener("resize", onScroll)
+
+    const reveal = new IntersectionObserver(
       (entries) =>
-        entries.forEach(
-          (entry) =>
-            entry.isIntersecting && entry.target.classList.add("is-visible"),
-        ),
-      { threshold: 0.12 },
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add("is-visible")
+          reveal.unobserve(entry.target)
+        }),
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
     )
     document
       .querySelectorAll(".reveal")
-      .forEach((element) => observer.observe(element))
+      .forEach((element) => reveal.observe(element))
+
+    const spy = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (entry.isIntersecting)
+            setActiveId(entry.target.id === "top" ? "" : entry.target.id)
+        }),
+      { rootMargin: "-45% 0px -50% 0px" },
+    )
+    document
+      .querySelectorAll("main > section[id]")
+      .forEach((section) => spy.observe(section))
+
     return () => {
       window.removeEventListener("scroll", onScroll)
-      observer.disconnect()
+      window.removeEventListener("resize", onScroll)
+      reveal.disconnect()
+      spy.disconnect()
     }
   }, [])
   useEffect(() => {
@@ -117,6 +148,7 @@ export default function App() {
         Skip to content
       </a>
       <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
+        <div className="scroll-progress" aria-hidden="true" />
         <nav className="shell nav" aria-label="Primary navigation">
           <a className="brand" href="#top" aria-label="Aya Almalla home">
             AA<span>.</span>
@@ -136,6 +168,12 @@ export default function App() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
+                className={
+                  activeId === item.toLowerCase() ? "active" : undefined
+                }
+                aria-current={
+                  activeId === item.toLowerCase() ? "true" : undefined
+                }
                 onClick={() => setMenuOpen(false)}
               >
                 {item}
@@ -421,6 +459,7 @@ export default function App() {
                 ))}
               </div>
               <div
+                key={processIndex}
                 className="process-detail"
                 id="process-panel"
                 role="tabpanel"
