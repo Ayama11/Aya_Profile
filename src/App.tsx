@@ -361,6 +361,7 @@ export default function App() {
                 project={projects[0]}
                 featured
                 onCaseStudy={() => setActiveProject(projects[0])}
+                onGallery={() => setGalleryProject(projects[0])}
               />
             </article>
             <div className="project-grid">
@@ -826,19 +827,56 @@ function Gallery({ project }: { project: Project }) {
       <p className="dialog-kicker">Project demo</p>
       <h2 id="dialog-title">{project.title} gallery</h2>
       <p className="dialog-intro">
-        Selected product and model-output views from the project.
+        {project.galleryIntro ??
+          "Selected product and model-output views from the project."}
       </p>
-      <div className={`gallery-grid ${project.key}`}>
-        {project.gallery?.map((image, index) => (
-          <img
-            key={image}
-            src={image}
-            alt={`${project.title} demo view ${index + 1}`}
-            loading="lazy"
-            decoding="async"
-          />
-        ))}
-      </div>
+      {project.galleryGroups ? (
+        project.galleryGroups.map((group, index) => (
+          <section className="gallery-group" key={group.title}>
+            <div className="gallery-group-head">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{group.title}</h3>
+            </div>
+            <p>{group.description}</p>
+            <div className={`gallery-figures ${group.layout}`}>
+              {group.figures.map((figure) => (
+                <figure className="gallery-figure" key={figure.src}>
+                  <a
+                    href={figure.src}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Open full-size image: ${figure.alt}`}
+                  >
+                    <img
+                      src={figure.src}
+                      alt={figure.alt}
+                      width={figure.size[0]}
+                      height={figure.size[1]}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </a>
+                  <figcaption>
+                    <strong>{figure.label}</strong> {figure.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        ))
+      ) : (
+        <div className={`gallery-grid ${project.key}`}>
+          {project.gallery?.map((image, index) => (
+            <img
+              key={image}
+              src={image}
+              alt={`${project.title} demo view ${index + 1}`}
+              loading="lazy"
+              decoding="async"
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

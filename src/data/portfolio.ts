@@ -1,4 +1,19 @@
 export type ProjectKey = "cadify" | "eyeai" | "haloscan" | "shifaa" | "equipment" | "zuma" | "rag"
+export type GalleryFigure = {
+  src: string
+  size: [number, number]
+  alt: string
+  label: string
+  caption: string
+}
+
+export type GalleryGroup = {
+  title: string
+  description: string
+  layout: "pair" | "stack"
+  figures: GalleryFigure[]
+}
+
 export type Project = {
   key: ProjectKey
   title: string
@@ -11,6 +26,8 @@ export type Project = {
   href?: string
   hrefLabel?: string
   gallery?: string[]
+  galleryIntro?: string
+  galleryGroups?: GalleryGroup[]
   kicker: string
   intro: string
   role: string
@@ -32,6 +49,53 @@ export const projects: Project[] = [
       ["0.93", "wall F1"],
       ["0.99", "opening F1"],
       ["3h → 1–2m", "workflow"],
+    ],
+    galleryIntro: "From a raster floor plan to editable CAD and a 3D model.",
+    galleryGroups: [
+      {
+        title: "Floor plan → CAD",
+        description:
+          "CADify reads a raster floor plan and rebuilds it as editable CAD geometry.",
+        layout: "pair",
+        figures: [
+          {
+            src: "assets/cadify-plan-input.webp",
+            size: [640, 640],
+            alt: "Raster architectural floor plan used as the CADify input",
+            label: "Input",
+            caption: "Raster floor plan.",
+          },
+          {
+            src: "assets/cadify-plan-cad.webp",
+            size: [640, 640],
+            alt: "Editable CAD drawing generated from the floor plan, with walls, doors, windows and stairs",
+            label: "Output",
+            caption: "Walls, doors, windows, stairs and rooms as CAD.",
+          },
+        ],
+      },
+      {
+        title: "Floor plan → 3D",
+        description:
+          "The detected layout feeds the 3D stage, which builds the model.",
+        layout: "stack",
+        figures: [
+          {
+            src: "assets/cadify-detected-schema.webp",
+            size: [1895, 1035],
+            alt: "Original floor plan shown next to the AI-detected schema",
+            label: "Detection",
+            caption: "Original plan beside the AI-detected schema.",
+          },
+          {
+            src: "assets/cadify-3d-editor.webp",
+            size: [1920, 995],
+            alt: "Detected plan opened in the 3D editor, shown in 2D and 3D side by side",
+            label: "3D editor",
+            caption: "The detected layout in 2D and 3D.",
+          },
+        ],
+      },
     ],
     kicker: "Graduation Project · Computer Vision · AI Engineering",
     intro:
