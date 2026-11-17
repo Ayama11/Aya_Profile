@@ -838,7 +838,16 @@ function Gallery({ project }: { project: Project }) {
               <h3>{group.title}</h3>
             </div>
             <p>{group.description}</p>
-            <div className={`gallery-figures ${group.layout}`}>
+            <div
+              className={`gallery-figures ${group.layout} ${
+                group.frameRatio ? "framed" : ""
+              }`}
+              style={
+                group.frameRatio
+                  ? { "--frame": group.frameRatio } as React.CSSProperties
+                  : undefined
+              }
+            >
               {group.figures.map((figure) => (
                 <figure className="gallery-figure" key={figure.src}>
                   <a

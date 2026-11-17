@@ -11,6 +11,7 @@ export type GalleryGroup = {
   title: string
   description: string
   layout: "pair" | "stack"
+  frameRatio?: string
   figures: GalleryFigure[]
 }
 
@@ -127,6 +128,56 @@ export const projects: Project[] = [
       "assets/eyeai-demo-2.jpg",
       "assets/eyeai-demo-3.jpg",
       "assets/eyeai-demo-4.jpg",
+    ],
+    galleryIntro:
+      "From a retinal image to a graded diagnosis with outlined lesions.",
+    galleryGroups: [
+      {
+        title: "Image → diagnosis",
+        description:
+          "The model grades diabetic retinopathy in five classes and outlines lesions on the retinal image.",
+        layout: "stack",
+        figures: [
+          {
+            src: "assets/eyeai-demo-1.jpg",
+            size: [1280, 608],
+            alt: "EyeAI analysis screen showing a Moderate DR prediction at 82.7% confidence with a lesion contour overlay",
+            label: "Moderate DR",
+            caption:
+              "82.7% confidence, with hard exudates and microaneurysms outlined.",
+          },
+          {
+            src: "assets/eyeai-demo-2.jpg",
+            size: [1280, 638],
+            alt: "EyeAI analysis screen showing a Proliferative DR prediction at 94.4% confidence with all four lesion layers",
+            label: "Proliferative DR",
+            caption: "94.4% confidence, with all four lesion layers shown.",
+          },
+        ],
+      },
+      {
+        title: "Lesion inspection",
+        description:
+          "Lesion layers can be switched on and off to inspect each class.",
+        layout: "pair",
+        frameRatio: "4 / 3",
+        figures: [
+          {
+            src: "assets/eyeai-demo-3.jpg",
+            size: [726, 597],
+            alt: "Close-up of a retinal image with yellow lesion contours outlined",
+            label: "Overlay",
+            caption: "Lesion contours outlined on the retinal image.",
+          },
+          {
+            src: "assets/eyeai-demo-4.jpg",
+            size: [791, 560],
+            alt: "Lesion layer toggles with image size, API execution time and mask encoding details",
+            label: "Controls",
+            caption: "Layer toggles, API time and mask encoding.",
+          },
+        ],
+      },
     ],
     kicker: "Medical AI · Team Leadership · Product Thinking",
     intro:
